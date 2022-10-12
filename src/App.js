@@ -1,25 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import {Heading} from "grommet";
+import Data from "./js/components/Data";
+const DATA_URL = 'https://jsonplaceholder.typicode.com/photos';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Heading level={1} textAlign="center" margin="large">Fetching data in table</Heading>
+            <Data dataUrl={DATA_URL} virtualized={false} />
+        </>
+    );
 }
 
 export default App;
