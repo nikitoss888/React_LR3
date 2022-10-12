@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Box, CheckBox, TextInput, FormField} from "grommet";
 import NonVirtualizedTable from "./NonVirtualizedTable";
-import VirtualizedTable from "./VirtualizedTable";
+import VirtualizedList from "./VirtualizedList";
 
 export default function Data(props) {
     const { dataUrl, virtualized } = props;
@@ -25,18 +25,17 @@ export default function Data(props) {
             <Box direction="row" gap="medium">
                 <CheckBox label="View thumbnail" checked={viewThumbnail}
                           onChange={event => setViewThumbnail(event.target.checked)} />
-                <CheckBox label="Virtualized" checked={isVirtualized} disabled={true}
+                <CheckBox label="Virtualized list" checked={isVirtualized}
                             onChange={event => setIsVirtualized(event.target.checked)} />
                 <FormField label="Max title words" htmlFor="maxTitleWords">
                     <TextInput type="number" value={maxTitleWords} id="maxTitleWords"
                                onChange={event => setMaxTitleWords(event.target.value)} />
                 </FormField>
             </Box>
-            {/*{isVirtualized ?*/}
-            {/*    <VirtualizedTable data={data} /> :*/}
-            {/*    <NonVirtualizedTable data={data} />*/}
-            {/*}*/}
-            <NonVirtualizedTable data={data} viewThumbnail={viewThumbnail} />
+            {isVirtualized ?
+                <VirtualizedList data={data} viewThumbnail={viewThumbnail} /> :
+                <NonVirtualizedTable data={data} viewThumbnail={viewThumbnail} />
+            }
         </Box>
     )
 }
